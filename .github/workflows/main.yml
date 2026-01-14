@@ -1,18 +1,26 @@
-name: example
+name: "RIIZE Concert Monitor"
+
 on:
-  workflow_dispatch: 
+  workflow_dispatch: # 수동으로 실행 버튼을 누를 때 작동
   schedule:
-    - cron: '*/5 * * * *' # Every 5 minutes
+    - cron: '*/1 * * * *' # 1분마다 자동으로 확인 (가장 빠른 설정)
+
 jobs:
-  job:
+  check:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
     steps:
-      - name: Check Tickets
-        uses: mooyoul/melon-ticket-actions@v1.1.0
+      - name: "Check Melon Ticket"
+        uses: mooyoul/melon-ticket-actions@v1
         with:
-          product-id:  212567
-          schedule-id: 100003
-          seat-id: 0
+          # 라이즈 피날레 콘서트 고유 번호
+          product-id: "212567"
+          
+          # 날짜 선택 (가고 싶은 날짜 하나만 골라주세요)
+          # 3/6(금): 100001 | 3/7(토): 100002 | 3/8(일): 100003
+          schedule-id: "100003"
+          
+          # "0"으로 두면 모든 구역의 취소표를 감시합니다.
+          seat-id: "0"
+          
+          # 슬랙 알림 주소 (GitHub Secrets에 등록한 이름)
           slack-incoming-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
-          message: '<@U12345678> 달려달려~'
