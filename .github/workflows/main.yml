@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Check Melon Ticket"
-        uses: mooyoul/melon-ticket-actions@v1
+        uses: mooyoul/melon-ticket-actions@master
         with:
           # 라이즈 피날레 콘서트 고유 번호
           product-id: "212567"
