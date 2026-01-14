@@ -20,7 +20,7 @@ jobs:
           schedule-id: "100003"
           
           # "0"으로 두면 모든 구역의 취소표를 감시합니다.
-          seat-id: ""
+          seat-id: "1"
           
           # 슬랙 알림 주소 (GitHub Secrets에 등록한 이름)
           slack-incoming-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
